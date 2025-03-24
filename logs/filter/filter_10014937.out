@@ -1,0 +1,25 @@
+Using maximum token length: 11
+
+Processing data/train.json
+Original example count: 161372
+
+Filtering examples longer than 11 tokens...
+Results for train.json:
+- Examples removed: 40437
+- Maximum token length found: 13
+- Final example count: 120935
+- Removal percentage: 25.06%
+
+Processing data/test.json
+Original example count: 7983
+
+Filtering examples longer than 11 tokens...
+Results for test.json:
+- Examples removed: 2649
+- Maximum token length found: 13
+- Final example count: 5334
+- Removal percentage: 33.18%
+
+Overall Statistics:
+Total examples removed: 43086
+Maximum token length found across all splits: 13

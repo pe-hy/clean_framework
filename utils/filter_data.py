@@ -1,13 +1,13 @@
 import json
 import os
-from tokenizers import Tokenizer
+from transformers import PreTrainedTokenizerFast
 import hydra
 from omegaconf import DictConfig
 from tqdm import tqdm
-from data_pythia import get_tokenizer
+from data import get_tokenizer
 
 
-def filter_by_length(data: list, tokenizer: Tokenizer, max_length: int) -> list:
+def filter_by_length(cfg, data: list, tokenizer: PreTrainedTokenizerFast, max_length: int) -> tuple:
     """Filter examples that exceed max token length."""
     filtered_data = []
     removed_count = 0
@@ -15,7 +15,19 @@ def filter_by_length(data: list, tokenizer: Tokenizer, max_length: int) -> list:
 
     print(f"\nFiltering examples longer than {max_length} tokens...")
     for example in tqdm(data):
-        tokens = tokenizer(example["text"])["input_ids"]
+        input_text = example["input"]
+        output_text = example["output"]
+        
+        # Use the split_str as a delimiter between input and output
+        full_text = tokenizer.bos_token + " " + input_text + " " + cfg.data.split_str + " " + output_text + " " + tokenizer.eos_token
+        
+        # Tokenize the text
+        tokens = tokenizer(
+            full_text,
+            truncation=False,  # Don't truncate, we're checking the actual length
+            return_overflowing_tokens=False,
+        )["input_ids"]
+        
         token_length = len(tokens)
         max_found_length = max(max_found_length, token_length)
 
@@ -27,7 +39,7 @@ def filter_by_length(data: list, tokenizer: Tokenizer, max_length: int) -> list:
     return filtered_data, removed_count, max_found_length
 
 
-def process_and_save_file(file_path: str, tokenizer: Tokenizer, max_length: int, sample_limit: int = None):
+def process_and_save_file(file_path: str, cfg: DictConfig, tokenizer: PreTrainedTokenizerFast, max_length: int, sample_limit: int = None):
     """Process a single JSON file and overwrite with filtered data."""
     print(f"\nProcessing {file_path}")
 
@@ -44,7 +56,7 @@ def process_and_save_file(file_path: str, tokenizer: Tokenizer, max_length: int,
 
     # Filter data
     filtered_data, removed_count, max_length_found = filter_by_length(
-        data, tokenizer, max_length
+        cfg, data, tokenizer, max_length
     )
 
     # Save filtered data back to original file (replacing it)
@@ -61,16 +73,11 @@ def process_and_save_file(file_path: str, tokenizer: Tokenizer, max_length: int,
 
 
 @hydra.main(
-    config_path="../config", config_name="config_base", version_base=None
+    config_path="../config", config_name="base", version_base=None
 )
 def main(cfg: DictConfig):
-    # Create tokenizer config that matches what get_tokenizer expects
-    tokenizer_config = {
-        "tokenizer_path": cfg.data.tokenizer_path
-    }
-    
     # Load tokenizer
-    tokenizer = get_tokenizer(tokenizer_config, for_filter=False)
+    tokenizer = get_tokenizer(cfg)
 
     # Get max token length from config or use default
     # Check if filter section exists
@@ -106,7 +113,7 @@ def main(cfg: DictConfig):
             continue
             
         removed, max_length = process_and_save_file(
-            file_path, tokenizer, max_length=max_token_length, sample_limit=sample_limit
+            file_path, cfg, tokenizer, max_length=max_token_length, sample_limit=sample_limit
         )
         total_removed += removed
         overall_max_length = max(overall_max_length, max_length)

@@ -1,0 +1,6 @@
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 161372 examples [00:00, 511007.88 examples/s]Generating train split: 161372 examples [00:00, 500128.74 examples/s]
+Generating val split: 0 examples [00:00, ? examples/s]Generating val split: 7983 examples [00:00, 576798.08 examples/s]
+Generating test split: 0 examples [00:00, ? examples/s]Generating test split: 7983 examples [00:00, 655080.49 examples/s]
+Map:   0%|          | 0/1024 [00:00<?, ? examples/s]Map:  98%|█████████▊| 1000/1024 [00:00<00:00, 5229.39 examples/s]Map: 100%|██████████| 1024/1024 [00:00<00:00, 5224.25 examples/s]
+Map:   0%|          | 0/7983 [00:00<?, ? examples/s]Map:  50%|█████     | 4000/7983 [00:00<00:00, 27611.18 examples/s]Map: 100%|██████████| 7983/7983 [00:00<00:00, 27863.47 examples/s]Map: 100%|██████████| 7983/7983 [00:00<00:00, 27456.44 examples/s]
+Map:   0%|          | 0/7983 [00:00<?, ? examples/s]Map:  50%|█████     | 4000/7983 [00:00<00:00, 27689.79 examples/s]Map: 100%|██████████| 7983/7983 [00:00<00:00, 28197.89 examples/s]Map: 100%|██████████| 7983/7983 [00:00<00:00, 27717.36 examples/s]

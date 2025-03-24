@@ -11,13 +11,15 @@ hydra:
     dir: .
 
 convert_hf:
-  in_path: "temp/${model.name}"
-  out_path: "temp/hf_${model.name}"
+  in_path: "temp/${wandb.model_name}"
+  out_path: "temp/hf_${wandb.model_name}"
 
 # Touch anything below here instead:
 
 wandb:
-  proj_name: "None"
+  # Name your model
+  model_name: "Pythia-${model.n_layer}-${model.n_head}-${model.n_embd}-example-model" 
+  proj_name: "example_project"
   num_examples_reported: 100
 
 data:
@@ -31,37 +33,36 @@ data:
   tokenizer_path: "tokenizer/tokenizer.json"
 
   # No need to change.
-  split_str: "[SEP]"
+  split_str: "[OUT]"
 
   # If you want to subsample sets:
   sampling:
     # Set to True if you want to subsample your sets.
-    sample_train_set: False
+    sample_train_set: True
     sample_test_set: False
     sample_val_set: False
 
     # This only applies if the above vars are set to True, otherwise uses all the data!!!
-    num_train: 512880
+    num_train: 51280
     num_val: 1024
     num_test: 1024
 
   # If you want to filter data (use utils/filter_data.py), otherwise unused.
   filter:
-    max_token_length: None  # Maximum token length for filtering examples
+    max_token_length: 11  # Maximum token length for filtering examples
   
 model:
-  # Name your model
-  name: "Pythia-${model.n_layer}-${model.n_head}-${model.n_embd}-___INSERT_NAME_HERE___" 
+  name: ${wandb.model_name}
   # eg.: Pythia-${model.n_layer}-${model.n_head}-${model.n_embd}-dfs
 
-  batch_size: 512
+  batch_size: 4096
   accumulate_grad_batches: 1
-  block_size: 1024
+  block_size: 24
   epochs: 100
 
-  n_layer: 12
-  n_head: 8
-  n_embd: 256
+  n_layer: 8
+  n_head: 4
+  n_embd: 512
 
 optim:
   lr_type: "linear" # options: linear or linear-reg, 

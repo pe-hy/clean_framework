@@ -1,0 +1,9 @@
+Total possible vectors: 3125
+
+Inalid vectors: 2312 (73.98%)
+Number of nodes in the graph: 813
+Number of edges in the graph: 6349
+Average number of edges per node: 7.81
+Directory already exists: data
+Saved 161372 training examples to data/train.json
+Saved 7983 test examples to data/test.json
