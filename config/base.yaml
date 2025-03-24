@@ -81,5 +81,5 @@ inference:
 
   # If you want to subsample test set for inference:
   sampling:
-    sample_test_set: False
+    sample_test_set: True
     num_test: 512

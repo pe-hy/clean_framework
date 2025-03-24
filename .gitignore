@@ -5,7 +5,7 @@
 
 data/*
 !data/*.gitkeep
-!data/inference_data
+!data/inference_data/*.gitkeep
 
 # logs/ - uncommented for example
 temp/

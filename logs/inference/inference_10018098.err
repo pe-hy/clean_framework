@@ -1,0 +1,20 @@
+/pfs/lustrep1/scratch/project_465001424/Hyner_Petr/clean_framework/clean_framework/utils/inference.py:91: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(model_dir / "model.pth")
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+The `GPTNeoXFlashAttention2` class is deprecated in favor of simply modifying the `config._attn_implementation`attribute of the `GPTNeoXAttention` class! It will be removed in v4.48
+Map:   0%|          | 0/5334 [00:00<?, ? examples/s]Map:  56%|█████▌    | 3000/5334 [00:00<00:00, 25712.79 examples/s]Map: 100%|██████████| 5334/5334 [00:00<00:00, 27914.06 examples/s]
+0it [00:00, ?it/s]
+Processing test.json:   0%|          | 0/5334 [00:00<?, ?it/s][A
+Processing test.json:  17%|█▋        | 883/5334 [00:00<00:00, 8828.72it/s][A
+Processing test.json:  33%|███▎      | 1782/5334 [00:00<00:00, 8921.55it/s][A
+Processing test.json:  50%|█████     | 2675/5334 [00:00<00:00, 8919.85it/s][A
+Processing test.json:  67%|██████▋   | 3569/5334 [00:00<00:00, 8927.11it/s][A
+Processing test.json:  84%|████████▎ | 4462/5334 [00:00<00:00, 8906.48it/s][AProcessing test.json: 100%|██████████| 5334/5334 [00:00<00:00, 8905.83it/s]
+
+Generating predictions for test.json:   0%|          | 0/11 [00:00<?, ?it/s][A
+Generating predictions for test.json:   9%|▉         | 1/11 [00:11<01:54, 11.44s/it][A
+Generating predictions for test.json:  27%|██▋       | 3/11 [00:11<00:24,  3.01s/it][A
+Generating predictions for test.json:  45%|████▌     | 5/11 [00:11<00:08,  1.49s/it][A
+Generating predictions for test.json:  64%|██████▎   | 7/11 [00:11<00:03,  1.14it/s][A
+Generating predictions for test.json:  82%|████████▏ | 9/11 [00:11<00:01,  1.76it/s][AGenerating predictions for test.json: 100%|██████████| 11/11 [00:11<00:00,  1.09s/it]
+1it [00:12, 12.56s/it]1it [00:12, 12.56s/it]

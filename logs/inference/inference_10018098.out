@@ -1,0 +1,11 @@
+
+Overall Metrics:
+token_full_accuracy: 0.0763
+exact_match_accuracy: 0.0763
+
+Dataset Metrics:
+
+test.json:
+  token_full_accuracy: 0.0763
+  exact_match_accuracy: 0.0763
+Results saved to temp/inference_results/results.pkl
