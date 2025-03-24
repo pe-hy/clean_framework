@@ -63,15 +63,9 @@ model:
   n_head: 8
   n_embd: 256
 
-  # Obtained from create_tokenizer.py output. 
-    # vocab_size must include all tokens (len(regular tokens) + len(special tokens) + 1).
-  vocab_size: None
-  bos_id: None
-  eos_id: None
-
 optim:
   lr_type: "linear" # options: linear or linear-reg, 
-                    # otherwise cosine decay
+                    # otherwise cosine decay (lr_type: None)
 
 eval:
   num_examples: 512
@@ -82,7 +76,7 @@ inference:
   modelpath: "temp/hf_${model.name}" # Default: uses checkpoint of model.name
   datapath: ${data.datapath}/inference_data/ # Reads ALL json files from this directory
   batch_size: 512
-  
+
   # If you want to subsample test set for inference:
   sampling:
     sample_test_set: False

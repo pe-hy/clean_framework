@@ -13,15 +13,15 @@ def get_configs(cfg: DictConfig):
             n_head=cfg.model.n_head,
             intermediate_size=cfg.model.n_embd * 4,
             padding_multiple=128,
-            padded_vocab_size=cfg.model.padded_vocab_size,
+            padded_vocab_size=None, # cfg.model.vocab_size,
         )
     )
 
     hf_conf = {
         "architectures": ["GPTNeoXForCausalLM"],
-        "bos_token_id": cfg.model.bos_id,
+        "bos_token_id": None, # cfg.model.bos_id,
         "classifier_dropout": 0.1,
-        "eos_token_id": cfg.model.eos_id,
+        "eos_token_id": None, # cfg.model.eos_id,
         "hidden_act": "gelu",
         "hidden_size": cfg.model.n_embd,
         "initializer_range": 0.02,
@@ -38,6 +38,6 @@ def get_configs(cfg: DictConfig):
         "transformers_version": "4.29.2",
         "use_cache": True,
         "use_parallel_residual": True,
-        "vocab_size": cfg.model.vocab_size,
+        "vocab_size": None # cfg.model.vocab_size,
     }
     return conf, hf_conf
