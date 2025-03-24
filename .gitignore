@@ -1,5 +1,6 @@
 # Folders with data, models, logs...
 data_generation/*
+!data_generation/*.gitkeep
 tokenizer/*
 !tokenizer/*.gitkeep
 
