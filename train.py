@@ -39,14 +39,12 @@ class LitLLM(L.LightningModule):
         self.train_batches = train_batches
         self.delimiter_token_id = delimiter_token_id
         _, self.hf_conf = hf_config.get_configs(cfg)
-        print(self.hf_conf)
 
     def setup(self, stage):
 
         self.hf_conf["bos_token_id"] = self.preprocessor.tokenizer.convert_tokens_to_ids("[BOS]")
         self.hf_conf["eos_token_id"] = self.preprocessor.tokenizer.convert_tokens_to_ids("[EOS]")
         self.hf_conf["vocab_size"] = len(self.preprocessor.tokenizer.get_vocab())
-        print(self.hf_conf)
 
         self.preprocessor.tokenizer.save_pretrained(self.cfg.convert_hf.in_path)
         with open(os.path.join(self.cfg.convert_hf.in_path, "config.json"), "w") as f:
@@ -221,9 +219,7 @@ def main(cfg: DictConfig):
     preprocessor = Preprocessor(
         tokenizer, device="cuda" if torch.cuda.is_available() else "cpu"
     )
-    print(conf)
     conf.padded_vocab_size = len(tokenizer.get_vocab())
-    print(conf)
     model = LLM(GPT(conf), preprocessor=preprocessor, config=conf)
     datasets = get_data(cfg, tokenizer)
     data = Datamodule(datasets, batch_size, num_workers, tokenizer)
@@ -250,7 +246,7 @@ def main(cfg: DictConfig):
     )
 
     total_params = sum(p.numel() for p in model.parameters())
-    print("total number of params:", total_params)
+    print("Total number of params:", total_params)
 
     trainer = L.Trainer(
         devices=1,

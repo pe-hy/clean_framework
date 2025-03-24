@@ -1,7 +1,7 @@
 # Folders with data, models, logs...
-data_generation/*
-tokenizer/*
-!tokenizer/*.gitkeep
+# data_generation/* - uncommented for example
+# tokenizer/* - uncommented for example
+# !tokenizer/*.gitkeep - uncommented for example
 
 data/*
 !data/*.gitkeep
