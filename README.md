@@ -33,3 +33,5 @@ This is a framework to train language model fast on different data.
     
     - cd clean_framework
     - python utils/inference.py
+
+- Data generation script should be named "generate_data.py"

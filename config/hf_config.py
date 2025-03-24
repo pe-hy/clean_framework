@@ -38,6 +38,6 @@ def get_configs(cfg: DictConfig):
         "transformers_version": "4.29.2",
         "use_cache": True,
         "use_parallel_residual": True,
-        "vocab_size": cfg.model.padded_vocab_size,
+        "vocab_size": cfg.model.vocab_size,
     }
     return conf, hf_conf

@@ -14,7 +14,6 @@ from utils.evaluator import Evaluator
 from litgpt.config import configs, Config, name_to_config
 from litgpt.model import GPT
 from litgpt.api import Preprocessor
-import math
 import json
 import os
 import wandb
@@ -70,8 +69,6 @@ class LitLLM(L.LightningModule):
         targets = self.mask_targets(idx, targets_no_mask)
         _, loss = self(idx, targets)
         self.log("train_loss", loss, sync_dist=True)
-        #current_lr = self.trainer.optimizers[0].param_groups[0]['lr']
-        #self.log("learning_rate", current_lr, on_step=True, on_epoch=False, sync_dist=True)
         return loss
 
     def validation_step(self, batch, batch_idx, dataloader_idx=0):
@@ -212,10 +209,12 @@ def main(cfg: DictConfig):
     batch_size = cfg.model.batch_size
     accumulate_grad_batches = cfg.model.accumulate_grad_batches
     num_workers = cfg.data.num_workers
-    tokenizer = get_tokenizer(cfg.tok_data)
+
+    tokenizer = get_tokenizer(cfg)
     preprocessor = Preprocessor(
         tokenizer, device="cuda" if torch.cuda.is_available() else "cpu"
     )
+    
     model = LLM(GPT(conf), preprocessor=preprocessor, config=conf)
     datasets = get_data(cfg, tokenizer)
     data = Datamodule(datasets, batch_size, num_workers, tokenizer)
