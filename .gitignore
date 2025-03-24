@@ -1,12 +1,13 @@
 # Folders with data, models, logs...
 data_generation/*
 !data_generation/*.gitkeep
+
 tokenizer/*
 !tokenizer/*.gitkeep
 
 data/*
 !data/*.gitkeep
-!data/inference_data
+!data/inference_data/*.gitkeep
 
 logs/
 temp/

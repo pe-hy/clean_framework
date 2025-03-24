@@ -215,7 +215,7 @@ def main(cfg: DictConfig):
                 results_dict[current_path]['predictions_ids'].append(generated_ids)
     
     # Calculate metrics
-    overall_metrics, dataset_metrics = calculate_metrics(results_dict, tokenizer)
+    overall_metrics, dataset_metrics = calculate_metrics(results_dict, tokenizer, cfg.data.split_str)
     
     # Add metrics to results_dict
     results_dict['overall_metrics'] = overall_metrics
