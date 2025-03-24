@@ -114,6 +114,9 @@ conda activate llms
 
 # Install dependencies
 pip install -r requirements.txt
+
+# In terminal, type:
+wandb login
 ```
 
 ### 2. Generate Data
