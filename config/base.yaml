@@ -68,6 +68,7 @@ model:
 optim:
   lr_type: "linear" # options: linear or linear-reg, 
                     # otherwise cosine decay (lr_type: None)
+  lr: 2e-4          # learning rate (used for cosine schedule)
 
 eval:
   num_examples: 512
