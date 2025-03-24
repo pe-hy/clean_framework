@@ -41,8 +41,8 @@ class LitLLM(L.LightningModule):
         _, self.hf_conf = hf_config.get_configs(cfg)
 
     def setup(self, stage):
-        self.hf_conf.bos_token_id = self.preprocessor.tokenizer.token_to_id("[BOS]")
-        self.hf_conf.eos_token_id = self.preprocessor.tokenizer.token_to_id("[EOS]") 
+        self.hf_conf.bos_token_id = self.preprocessor.tokenizer.encode("[BOS]")
+        self.hf_conf.eos_token_id = self.preprocessor.tokenizer.encode("[EOS]") 
         self.hf_conf.vocab_size = self.preprocessor.tokenizer.get_vocab_size(with_added_tokens=True)
 
         self.preprocessor.tokenizer.save_pretrained(self.cfg.convert_hf.in_path)

@@ -31,7 +31,7 @@ data:
   tokenizer_path: "tokenizer/tokenizer.json"
 
   # No need to change.
-  split_str: "OUT"
+  split_str: "[SEP]"
 
   # If you want to subsample sets:
   sampling:

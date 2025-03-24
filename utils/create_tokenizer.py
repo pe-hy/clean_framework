@@ -12,7 +12,7 @@ from tokenizers.models import WordLevel
 from tokenizers.pre_tokenizers import WhitespaceSplit
 
 
-SPECIAL_TOKENS = ["[BOS]", "[PAD]", "[MASK]", "[UNK]", "[EOS]"]
+SPECIAL_TOKENS = ["[BOS]", "[PAD]", "[MASK]", "[UNK]", "[EOS]", "[SEP]"]
 
 
 @hydra.main(config_path="../config", config_name="base", version_base=None)
@@ -49,18 +49,19 @@ def create_tokenizer(vocab: Set[str], cfg: DictConfig) -> Tokenizer:
     tokenizer = Tokenizer(WordLevel(vocab_dict, unk_token="[UNK]"))
     tokenizer.pre_tokenizer = WhitespaceSplit()
     tokenizer.add_special_tokens(SPECIAL_TOKENS)
-    
     # Calculate total vocabulary size including special tokens
     total_token_count = regular_token_count + len(SPECIAL_TOKENS)
     
     # Get and print special token IDs
-    bos_id = tokenizer.token_to_id("[BOS]")
-    eos_id = tokenizer.token_to_id("[EOS]")
+    bos_id = tokenizer.encode("[BOS]")
+    eos_id = tokenizer.encode("[EOS]")
+    sep_id = tokenizer.encode("[SEP]")
     
     print(f"Regular vocabulary size (excluding special tokens): {regular_token_count}")
     print(f"Total vocabulary size (including special tokens): {total_token_count}")
     print(f"BOS token ID: {bos_id}")
     print(f"EOS token ID: {eos_id}")
+    print(f"EOS token ID: {sep_id}")
     
     # Save tokenizer
     save_path = cfg.data.tokenizer_path
