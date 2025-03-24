@@ -59,6 +59,7 @@ clean_framework/
 │   └── inference.py            # Inference utilities
 │
 ├── train.py                    # Main training script
+├── requirements.txt            # Package list
 ├── .gitignore                  # Git ignore file
 ├── LICENSE                     # MIT License
 └── README.md                   # This file
