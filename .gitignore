@@ -1,3 +1,14 @@
+# Folders with data, models, logs...
+data_generation/*
+!data_generation/*.gitkeep
+tokenizer/*
+!tokenizer/*.gitkeep
+data/*
+!data/*.gitkeep
+logs/
+temp/
+wandb/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
