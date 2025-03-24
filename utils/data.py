@@ -66,15 +66,15 @@ class Datamodule(LightningDataModule):
 
 
 def get_data(cfg: DictConfig, tokenizer, for_info=False):
-    train_file = to_absolute_path(os.path.join(cfg.data.datapath, cfg.data.train_file))
-    val_file = to_absolute_path(os.path.join(cfg.data.datapath, cfg.data.val_file))
+    train_file = to_absolute_path(cfg.data.train_file)
+    test_file = to_absolute_path(cfg.data.test_file)
 
     hf_dataset = load_dataset(
         "json",
         data_files={
             "train": train_file,
-            "val": val_file,
-            "test": val_file,
+            "val": test_file,
+            "test": test_file,
         },
     )
     if cfg.data.sampling.sample_train_set:

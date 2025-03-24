@@ -91,8 +91,8 @@ class Evaluator:
             # Ground truth is everything AFTER the delimiter up to EOS
             gt_ids = input_ids[split_index+1:end_index]
             gt = self.tokenizer.decode(gt_ids, skip_special_tokens=True)
-            print("FULL_PROMPT: ", full_prompt, "\n\n")
-            print("GT: ", gt, "\n\n")
+            # print("FULL_PROMPT: ", full_prompt, "\n\n")
+            # print("GT: ", gt, "\n\n")
 
             # Re-encode with BOS token
             prompt_with_bos = self.tokenizer.encode(
@@ -121,7 +121,7 @@ class Evaluator:
             tokenizer.padding_side = "left"
             inputs = tokenizer(batch_text, return_tensors="pt", padding=True).to("cuda")
             input_prompt = inputs["input_ids"]
-            print("INPUT PROMPT: ", input_prompt, "\n\n")
+            # print("INPUT PROMPT: ", input_prompt, "\n\n")
 
             outputs = self.hf_model.generate(
                 input_ids=input_prompt,
@@ -147,9 +147,9 @@ class Evaluator:
                     # Get just the part after the delimiter
                     after_delimiter = tokenizer.decode(output_ids[split_index+1:end_index], skip_special_tokens=True)
                     
-                    print("AFTER DELIMITER: ", after_delimiter, "\n\n")
+                    # print("AFTER DELIMITER: ", after_delimiter, "\n\n")
                 except ValueError:
-                    print(f"Warning: Could not find delimiter or EOS in generated output")
+                    # print(f"Warning: Could not find delimiter or EOS in generated output")
                     full_text = tokenizer.decode(output_ids, skip_special_tokens=False)
                     after_delimiter = ""
                 

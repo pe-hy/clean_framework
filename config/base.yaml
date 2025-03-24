@@ -17,8 +17,12 @@ convert_hf:
 # Touch anything below here instead:
 
 wandb:
+  # Name your model
+  model_name: "Pythia-${model.n_layer}-${model.n_head}-${model.n_embd}-___INSERT-NAME-HERE___" 
+  # And your project
   proj_name: "None"
   num_examples_reported: 100
+
 
 data:
   # No need to change.
@@ -31,7 +35,7 @@ data:
   tokenizer_path: "tokenizer/tokenizer.json"
 
   # No need to change.
-  split_str: "[SEP]"
+  split_str: "[OUT]"
 
   # If you want to subsample sets:
   sampling:
@@ -50,9 +54,7 @@ data:
     max_token_length: None  # Maximum token length for filtering examples
   
 model:
-  # Name your model
-  name: "Pythia-${model.n_layer}-${model.n_head}-${model.n_embd}-___INSERT_NAME_HERE___" 
-  # eg.: Pythia-${model.n_layer}-${model.n_head}-${model.n_embd}-dfs
+  name: ${wandb.model_name}
 
   batch_size: 512
   accumulate_grad_batches: 1
