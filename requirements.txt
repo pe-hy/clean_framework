@@ -1,3 +1,4 @@
+flash-attn
 litgpt>=0.5.7
 torch>=2.5.0
 lightning>=2.5.0

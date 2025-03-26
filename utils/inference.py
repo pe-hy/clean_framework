@@ -94,7 +94,7 @@ def main(cfg: DictConfig):
         model_dir,
         torch_dtype=torch.bfloat16,
         local_files_only=True,
-        state_dict=state_dict,
+        # state_dict=state_dict,
         attn_implementation="flash_attention_2",
     )
     
