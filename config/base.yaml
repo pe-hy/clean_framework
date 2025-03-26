@@ -66,9 +66,12 @@ model:
   n_embd: 256
 
 optim:
-  lr_type: "linear" # options: linear or linear-reg, 
-                    # otherwise cosine decay (lr_type: None)
-  lr: 2e-4          # learning rate (used for cosine schedule)
+  lr_type: "linear-reg" # options: linear or linear-reg, 
+                        # otherwise cosine decay (lr_type: None)
+  lr: 2e-4              # learning rate
+  warmup_steps: 10      
+  weight_decay: 0.01    # only for linear-reg / linear
+  n_steps: ${model.epochs}
 
 eval:
   num_examples: 512

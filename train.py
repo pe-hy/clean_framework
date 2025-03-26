@@ -157,26 +157,26 @@ class LitLLM(L.LightningModule):
     def configure_optimizers(self):
 
         if self.cfg.optim.lr_type == "linear":
-            warmup_steps = 10
+            warmup_steps = self.cfg.optim.warmup_steps
             optimizer = torch.optim.AdamW(
-                self.llm.model.parameters(), lr=0.0002, weight_decay=0.0, betas=(0.9, 0.95)
+                self.llm.model.parameters(), lr=self.cfg.optim.lr, weight_decay=self.cfg.optim.weight_decay, betas=(0.9, 0.95)
             )
             scheduler = torch.optim.lr_scheduler.LambdaLR(
                 optimizer, lambda step: (step + 1) / warmup_steps
             )
             return [optimizer], [scheduler]
         elif self.cfg.optim.lr_type == "linear-reg":
-            warmup_steps = 10
+            warmup_steps = self.cfg.optim.warmup_steps
             optimizer = torch.optim.AdamW(
-                self.llm.model.parameters(), lr=0.0002, weight_decay=0.01, betas=(0.9, 0.95)
+                self.llm.model.parameters(), lr=self.cfg.optim.lr, weight_decay=self.cfg.optim.weight_decay, betas=(0.9, 0.95)
             )
             scheduler = torch.optim.lr_scheduler.LambdaLR(
                 optimizer, lambda step: (step + 1) / warmup_steps
             )
             return [optimizer], [scheduler]
         else:
-            n_steps = self.cfg.model.epochs * self.train_batches
-            warmup_steps = self.train_batches  # 2* epochs worth of steps also viable
+            n_steps = self.cfg.optim.n_steps
+            warmup_steps = self.cfg.optim.warmup_steps
 
             optimizer = torch.optim.AdamW(self.parameters(), lr=self.cfg.optim.lr)
             scheduler = {
@@ -185,7 +185,7 @@ class LitLLM(L.LightningModule):
                     num_warmup_steps=warmup_steps,
                     num_training_steps=n_steps,
                 ),
-                "interval": "step",
+                "interval": "epoch",
             }
             return [optimizer], [scheduler]
 
