@@ -18,7 +18,7 @@ convert_hf:
 
 wandb:
   # Name your model
-  model_name: "Pythia-${model.n_layer}-${model.n_head}-${model.n_embd}-___INSERT-NAME-HERE___" 
+  model_name: "Pythia-${model.n_layer}l-${model.n_head}h-${model.n_embd}d-${optim.lr_type}-___INSERT-NAME-HERE___" 
   # And your project
   proj_name: "None"
   num_examples_reported: 100
