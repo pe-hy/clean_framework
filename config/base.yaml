@@ -18,7 +18,7 @@ convert_hf:
 
 wandb:
   # Name your model
-  model_name: "Pythia-${model.n_layer}-${model.n_head}-${model.n_embd}-example-model" 
+  model_name: "Pythia-${model.n_layer}l-${model.n_head}h-${model.n_embd}d-${optim.lr_type}-example-model" 
   proj_name: "example_project"
   num_examples_reported: 100
 
@@ -53,7 +53,6 @@ data:
   
 model:
   name: ${wandb.model_name}
-  # eg.: Pythia-${model.n_layer}-${model.n_head}-${model.n_embd}-dfs
 
   batch_size: 4096
   accumulate_grad_batches: 1
