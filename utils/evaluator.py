@@ -38,7 +38,7 @@ def convert_litgpt_to_hf(cfg):
         out_dir,
         torch_dtype=torch.bfloat16,
         local_files_only=True,
-        state_dict=state_dict,
+        # state_dict=state_dict,
         attn_implementation="flash_attention_2",
     )
     return hf_model
