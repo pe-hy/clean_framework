@@ -1,5 +1,5 @@
 Have this ready:
-
+Check ~/.bashrc for cache stuff.
 Have some env: conda create -n "my_env" python=3.11
 Install reqs: 
 
