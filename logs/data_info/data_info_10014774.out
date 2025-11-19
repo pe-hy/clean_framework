@@ -1,0 +1,63 @@
+
+--- Token Statistics for train set (up to EOS token) ---
+Number of samples: 1024
+Average token count: 9.93
+Maximum token count: 13 (sample index: 6)
+Minimum token count: 7 (sample index: 2)
+
+Token count distribution:
+10th percentile: 7.0
+25th percentile: 9.0
+50th percentile: 9.0
+75th percentile: 11.0
+90th percentile: 13.0
+95th percentile: 13.0
+99th percentile: 13.0
+
+Max token sequence:
+[BOS] E0 . T3 . T18 . T8 . T12 [SEP] E151 [EOS]
+
+Min token sequence:
+[BOS] E0 . T3 [SEP] E5 [EOS]
+
+--- Token Statistics for val set (up to EOS token) ---
+Number of samples: 7983
+Average token count: 10.98
+Maximum token count: 13 (sample index: 8)
+Minimum token count: 9 (sample index: 0)
+
+Token count distribution:
+10th percentile: 9.0
+25th percentile: 9.0
+50th percentile: 11.0
+75th percentile: 13.0
+90th percentile: 13.0
+95th percentile: 13.0
+99th percentile: 13.0
+
+Max token sequence:
+[BOS] E0 . T19 . T19 . T3 . T10 [SEP] E20 [EOS]
+
+Min token sequence:
+[BOS] E0 . T19 . T3 [SEP] E5 [EOS]
+
+--- Token Statistics for test set (up to EOS token) ---
+Number of samples: 7983
+Average token count: 10.98
+Maximum token count: 13 (sample index: 8)
+Minimum token count: 9 (sample index: 0)
+
+Token count distribution:
+10th percentile: 9.0
+25th percentile: 9.0
+50th percentile: 11.0
+75th percentile: 13.0
+90th percentile: 13.0
+95th percentile: 13.0
+99th percentile: 13.0
+
+Max token sequence:
+[BOS] E0 . T19 . T19 . T3 . T10 [SEP] E20 [EOS]
+
+Min token sequence:
+[BOS] E0 . T19 . T3 [SEP] E5 [EOS]

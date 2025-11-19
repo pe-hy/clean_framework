@@ -1,0 +1,6 @@
+Regular vocabulary size (excluding special tokens): 834
+Total vocabulary size (including special tokens): 839
+BOS token ID: 834
+EOS token ID: 838
+OUT token ID: 595
+Tokenizer saved to: tokenizer/tokenizer.json

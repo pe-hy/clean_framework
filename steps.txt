@@ -1,0 +1,27 @@
+Have this ready:
+
+Have some env: conda create -n "my_env" python=3.11
+Install reqs: 
+
+pip install -r requirements.txt
+
+1) Run data generation
+
+python data_generation/generate_data.py
+
+2) Run training
+
+CUDA_VISIBLE_DEVICES=0 python train.py
+
+All works? Create container definition file.
+
+Move to LUMI/Karolina and run build_container.sh.
+Enter container and install requirements.txt.:
+
+1) apptainer shell --nv container.sif
+2) pip install -r requirements.txt
+
+Then run the scripts:
+
+1) bash hpc_scripts/gen_data.sh
+2) sbatch hp_train.sh
